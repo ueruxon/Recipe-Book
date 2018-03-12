@@ -1,0 +1,108 @@
+@import url(//fonts.googleapis.com/css?family=Fjalla+One);
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&subset=cyrillic,cyrillic-ext');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+    background: #ecf0f1; 
+}
+
+.header {
+    background-color: rgb(255, 167, 38);
+    background: linear-gradient(135deg, rgb(249, 182, 39)  0%, rgb(208, 99, 87)  100%);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 2%;
+    width: 90%;
+    margin: 0 auto;
+}
+.header-content h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 5vw;
+    font-family: 'Fjalla One', Arial, sans-serif;
+    text-shadow: 0 -3px 0 #231000;
+    color: #893e00;
+}
+.header-content a {
+    display: block;
+    width: 65px;
+    height: 62px;
+    background-image: url("./icons/github-icon-1.svg");
+}
+.header-content a:hover {
+    background-image: url("./icons/github-icon-2.svg");
+}
+
+
+.wrapper {
+    display: flex;
+    width: 90%;
+    padding: 2%;
+    margin: 0 auto;
+}
+
+.sidebar {
+    width: 40%;
+    margin-right: 2%;
+}
+
+.sidebar h1 {
+    color: #893e00;
+    font-weight: bold;
+    font-size: 40px;
+}
+/* ------- FORM ------- */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+}
+
+.form-input {
+    margin-bottom: 25px;
+    height: 60px;
+    background-clip: padding-box;
+    outline: none;
+    font-size: 15px;
+    box-shadow: 0 0 0 2px #E7A731;
+    border: 0 none;
+    transition:  0.5s ease;
+    text-indent: 25px;
+}
+.form-input::-webkit-input-placeholder {opacity: 1; transition: opacity 0.3s ease;}
+.form-input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;} 
+
+.form-area {
+    box-shadow: 0 0 0 2px #E7A731;
+    margin-bottom: 25px;
+    padding: 20px 25px;
+    height: 140px;
+    resize: none;
+    border: 0 none;
+    background-clip: padding-box;
+    outline: none;
+}
+.form-area::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+.form-area:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+
+.form-button__add {
+    background: #DFA339;
+    color: #893e00;
+    height: 60px;
+    border: 0;
+    font-weight: bold;
+    font-size: 30px;
+    outline: none;
+    transition:  0.3s ease;
+}
+.form-button__add:hover {background: #CD8920}
