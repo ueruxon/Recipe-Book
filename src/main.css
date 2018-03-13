@@ -12,7 +12,7 @@ body {
 }
 
 .header {
-    background-color: rgb(255, 167, 38);
+    background-color: #ffa726;
     background: linear-gradient(135deg, rgb(249, 182, 39)  0%, rgb(208, 99, 87)  100%);
 }
 
@@ -36,6 +36,7 @@ body {
     display: block;
     width: 65px;
     height: 62px;
+    font-size: 0;
     background-image: url("./icons/github-icon-1.svg");
 }
 .header-content a:hover {
@@ -60,6 +61,7 @@ body {
     font-weight: bold;
     font-size: 40px;
 }
+
 /* ------- FORM ------- */
 
 .form {
@@ -69,7 +71,7 @@ body {
 }
 
 .form-input {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     height: 60px;
     background-clip: padding-box;
     outline: none;
@@ -106,3 +108,69 @@ body {
     transition:  0.3s ease;
 }
 .form-button__add:hover {background: #CD8920}
+
+/* ----------------- Recipe List ------------- */
+
+.main {
+    width: 50%;
+    margin-left: 10%;
+}
+
+.main h1 {
+    color: #893e00;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.main-list {
+    padding: 0;
+    text-decoration: none;
+}
+
+.main-list__item {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.main-list__item-title {
+    height: 60px;
+    background: #DFA339;
+    color: #893e00;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: left;
+    position: relative;
+    padding: 10px;
+    z-index: 2000;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    transition: all .2s ease-in;
+}
+.main-list__item-title:hover { background: #CD8920}
+
+.main-list__item-content {
+    height: 30px;
+    background-color: transparent;
+    border-radius: 4px;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    margin-top: -30px;
+    text-align: left;
+    padding: 15px;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 200ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+}
+
+.main-list__item-content.content-open {
+    margin-top: 0px;
+    height: 100%;
+    background-color: rgba(0,0,0, .1);
+    transition: all 350ms cubic-bezier(0.080, 1.090, 0.320, 1);
+    visibility: visible;
+    opacity: 1;
+}
+

@@ -4,7 +4,7 @@ const initialState = {
     recipes: [
         {
             id: "2132321",
-            name: "Пирожки",
+            nameRecipe: "Пирожки",
             ingredients: "Мука, соль, яйца, вода",
             instructions: "Взбить яйца, добавить соли и вылить в муку. Размешать и добавить воды"
         },
