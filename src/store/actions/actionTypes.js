@@ -1,3 +1,5 @@
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const REMOVE_RECIPE = 'REMOVE_RECIPE';
 export const EDIT_RECIPE = 'EDIT_RECIPE';
+export const CANCEL_EDITING = "CANCEL_EDITING";
+export const CONFIRMED_EDIT = "CONFIRMED_EDIT";

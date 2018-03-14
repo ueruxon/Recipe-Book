@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Form = ({ onFieldChange, createRecipe, value }) => {
+import Button from "./button"
+
+const Form = ({ onFieldChange, createRecipe, value, onCancelEdit, onConfirmedEdit}) => {
     return (
         <form className="form">
             <input type="text" value={value.nameRecipe} 
@@ -12,10 +14,11 @@ const Form = ({ onFieldChange, createRecipe, value }) => {
             <textarea className="form-area" value={value.instructions}
                 name="instructions" placeholder="Instructions"
                 onChange={(event) => onFieldChange(event.target.value, event.target.name)} />
-            <button type="submit" className="form-button__add"
-                onClick={(event) => createRecipe(event)}>
-                Add
-            </button>
+            <Button value={value} 
+                createRecipe={createRecipe}
+                onCancelEdit={onCancelEdit}
+                onConfirmedEdit={onConfirmedEdit}
+            />    
         </form>
     )
 }

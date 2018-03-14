@@ -12,12 +12,23 @@ class RecipeControls extends React.Component {
         nameRecipe: "",
         ingredients: "",
         instructions: "",
+        isEditing: false,
+        currentRecipeId: "",
     }
 
-    onFieldChange = (value, name) => {
-        this.setState({
-            [name]: value,
-        })
+    componentWillReceiveProps = ({currentRecipe}) => {
+        if (currentRecipe !== null) {
+            const editRecipe = currentRecipe.recipe;
+            this.setState(prevState => {
+                return {
+                    nameRecipe: editRecipe.nameRecipe,
+                    ingredients: editRecipe.ingredients,
+                    instructions: editRecipe.instructions,
+                    isEditing: !prevState.isEditing,
+                    currentRecipeId: editRecipe.id,
+                }
+            })
+        }
     }
 
     createRecipe = (event) => {
@@ -32,9 +43,39 @@ class RecipeControls extends React.Component {
 
             this.props.addRecipe(recipe);
             this.resetField();
-        }
+        };
+    }
 
-        return false;
+    onFieldChange = (value, name) => {
+        this.setState({
+            [name]: value,
+        })
+    }
+
+    onCancelEdit = () => {
+        this.setState(prevState => ({
+            isEditing: !prevState.isEditing,
+            currentRecipeId: "",           
+        }))
+        this.resetField();
+        this.props.cancelEditing();
+    }
+
+    onConfirmedEdit = (event, value) => {
+        event.preventDefault();
+        const { nameRecipe, ingredients, instructions, currentRecipeId} = value;
+        const newRecipe = {
+            nameRecipe,
+            ingredients,
+            instructions,
+            id: currentRecipeId,
+        }
+        this.props.confimredEdit(newRecipe);
+        this.setState(prevState => ({
+            isEditing: !prevState.isEditing,
+            currentRecipeId: "",
+        }))
+        this.resetField();
     }
 
     resetField = () => {
@@ -43,28 +84,32 @@ class RecipeControls extends React.Component {
             ingredients: "",
             instructions: "",
         })
-    }    
+    } 
 
     render() {
+        
         return (
             <Sidebar>
                 <Form onFieldChange={this.onFieldChange}
-                      createRecipe={this.createRecipe} 
-                      value={this.state}/>
+                    createRecipe={this.createRecipe} 
+                    value={this.state}
+                    onCancelEdit={this.onCancelEdit}
+                    onConfirmedEdit={this.onConfirmedEdit} />
             </Sidebar>
         )
-    }
+    };
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
-        recipes: state.recipes,
+        ...state,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    addRecipe: recipeData => dispatch(actionCreators.addRecipe(recipeData))
-});
+    addRecipe: recipeData => dispatch(actionCreators.addRecipe(recipeData)),
+    cancelEditing: () => dispatch(actionCreators.cancelEditing()),
+    confimredEdit: newRecipe => dispatch(actionCreators.confirmedEdit(newRecipe)),
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeControls)
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeControls);
