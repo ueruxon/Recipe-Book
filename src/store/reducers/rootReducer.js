@@ -1,14 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
-const initialState = {
+export const initialState = {
     currentRecipe: null,
     recipes: [
-        {
-            id: "2132321",
-            nameRecipe: "Пирожки",
-            ingredients: "Мука, соль, яйца, вода",
-            instructions: "Взбить яйца, добавить соли и вылить в муку. Размешать и добавить воды"
-        },
     ],
 }
 

@@ -1,10 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+
 
 
 class Item extends React.Component {
 
     state = {
         isOpen: false,
+        disabled: false,
+    }
+
+    componentWillReceiveProps = ({currentRecipe}) => {
+        if (currentRecipe === null) {
+            this.setState({ disabled: false,})
+        }
+    }
+
+    toggleDisabled = () => {
+        this.setState(prevState => ({
+            disabled: !prevState.disabled,
+        }))
     }
 
     openRecipe = () => {
@@ -14,17 +29,18 @@ class Item extends React.Component {
     }
 
     render() {
-        const { nameRecipe, ingredients, instructions, deleteRecipe, recipeId, onEditingRecipe, disabled} = this.props;
+        const { nameRecipe, ingredients, instructions, deleteRecipe, recipeId, onEditingRecipe} = this.props;
         const contentOpen = this.state.isOpen ? `content-open` : ``;
-        const disabledButton = disabled ? `disabled` : ``;
-
+        const disabledButton = this.state.disabled ? `disabled` : ``;
+        
         return (
             <li className="main-list__item">
                 <div className="main-list__item-header">
                     <div className="main-list__item-header-title" onClick={this.openRecipe}>
                         {nameRecipe}
                     </div>
-                    <div className={`main-list__item-header-editing ${disabledButton}`} onClick={() => onEditingRecipe(recipeId)}>
+                    <div className={`main-list__item-header-editing ${disabledButton}`} 
+                        onClick={() => {onEditingRecipe(recipeId); this.toggleDisabled()}}>
                         <i className="fas fa-pencil-alt" />
                     </div>
                     <div className="main-list__item-header-delete" onClick={() => deleteRecipe(recipeId)}>
@@ -42,4 +58,10 @@ class Item extends React.Component {
     }
 }
 
-export default Item;
+const mapStateToProps = state => {
+    return {
+        ...state,
+    }
+}
+
+export default connect(mapStateToProps)(Item);

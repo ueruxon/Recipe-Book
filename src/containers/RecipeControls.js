@@ -24,7 +24,7 @@ class RecipeControls extends React.Component {
                     nameRecipe: editRecipe.nameRecipe,
                     ingredients: editRecipe.ingredients,
                     instructions: editRecipe.instructions,
-                    isEditing: !prevState.isEditing,
+                    isEditing: true,
                     currentRecipeId: editRecipe.id,
                 }
             })

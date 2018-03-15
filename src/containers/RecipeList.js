@@ -8,10 +8,6 @@ import RecipeCard from '../components/mainContent/recipeCard';
 
 class RecipeList extends React.Component {
 
-    state = {
-        isDisabled: false,
-    }
-
     deleteRecipe = id => {
         this.props.deleteRecipe(id);
     }
@@ -19,10 +15,7 @@ class RecipeList extends React.Component {
     onEditingRecipe = id => {
         const currentRecipe = this.props.recipes.find(recipe => {
             return recipe.id === id;
-        })
-        // this.setState((prevState) => ({
-        //     isDisabled: !prevState.isDisabled,
-        // }))
+        });
         this.props.editingRecipe(currentRecipe);
     }
 
@@ -34,14 +27,18 @@ class RecipeList extends React.Component {
                 instructions={recipe.instructions}
                 deleteRecipe={this.deleteRecipe}
                 recipeId={recipe.id}
-                onEditingRecipe={this.onEditingRecipe} 
-                disabled={this.state.isDisabled} />
+                onEditingRecipe={this.onEditingRecipe}  />
         ));
+
+        const plug = <div className="main-list__plug">There are no recipe yet... Please add some.</div>;
 
         return (
             <Main>
                 <ul className="main-list">
-                    {recipeList}
+                    {this.props.recipes.length > 0 ?
+                        recipeList : 
+                        plug
+                    }
                 </ul>
             </Main>
         )
